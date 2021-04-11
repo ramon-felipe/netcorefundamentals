@@ -7,12 +7,12 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1-stretch AS build
 WORKDIR /src
-COPY ["OdeToFood/OdeToFood.csproj", "OdeToFood/"]
-COPY ["OdeToFood.Data/OdeToFood.Data.csproj", "OdeToFood.Data/"]
-COPY ["OdeToFood.Core/OdeToFood.Core.csproj", "OdeToFood.Core/"]
-RUN dotnet restore "OdeToFood/OdeToFood.csproj"
+COPY ["src/OdeToFood/OdeToFood.csproj", "src/OdeToFood/"]
+COPY ["src/OdeToFood.Data/OdeToFood.Data.csproj", "src/OdeToFood.Data/"]
+COPY ["src/OdeToFood.Core/OdeToFood.Core.csproj", "src/OdeToFood.Core/"]
+RUN dotnet restore "src/OdeToFood/OdeToFood.csproj"
 COPY . .
-WORKDIR "/src/OdeToFood"
+WORKDIR "/src/src/OdeToFood"
 RUN dotnet build "OdeToFood.csproj" -c Release -o /app/build
 
 FROM build AS publish
